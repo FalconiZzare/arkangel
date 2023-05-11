@@ -136,6 +136,8 @@ exports.getAppointments = async (req, res) => {
   try {
     const appointments = await db.executeQuery(`
         SELECT appointment_date,
+               a.patient_id,
+               a.doctor_id,
                a.id         as appointment_id,
                p.first_name as patient_name,
                d.first_name as doctor_name

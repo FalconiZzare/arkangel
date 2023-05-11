@@ -2,34 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import { Form, Formik, useFormik } from 'formik';
 import { COLORS } from '../../utils/GlobalColors';
-import { PATIENT_INFO } from '../../utils/fields';
+import { APPOINTMENT_INFO } from '../../utils/fields';
 import StyledInputField from '../../ui/StyledInputField';
 import { SubmitButton } from '../../utils/ButtonRedacted';
-import { addPatient, deletePatient, getPatients } from '../../api/patient';
-import { PatientCard } from './PatientStyle';
+import { addAppointment, deleteAppointment, getAppointments } from '../../api/appointment';
+import { AppointmentCard } from './AppointmentStyle';
 
-const Patient = () => {
+const Appointment = () => {
   const [data, setData] = useState([]);
-  const handleAddPatient = async (values, resetForm) => {
-    const patientFormData = new FormData();
+  const handleAddAppointment = async (values, resetForm) => {
+    const appointmentFormData = new FormData();
     for (const key in values) {
-      patientFormData.append(key, values[key]);
+      appointmentFormData.append(key, values[key]);
     }
 
     try {
-      const res = await addPatient(patientFormData);
+      const res = await addAppointment(appointmentFormData);
       if (res.data.success) {
         resetForm({ values: '' });
-        getPatientData();
+        getAppointmentData();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getPatientData = () => {
+  const getAppointmentData = () => {
     const fetchData = async () => {
-      const res = await getPatients();
+      const res = await getAppointments();
       if (res.data.success) {
         console.log(res.data.message);
         setData(res.data.data);
@@ -42,13 +42,13 @@ const Patient = () => {
   };
 
   useEffect(() => {
-    getPatientData();
+    getAppointmentData();
   }, []);
 
-  const handlePatientDelete = async (id) => {
+  const handleAppointmentDelete = async (id) => {
     try {
-      const res = await deletePatient(id);
-      if (res.data.success) setData(data.filter((patient) => patient.id !== id));
+      const res = await deleteAppointment(id);
+      if (res.data.success) setData(data.filter((appointment) => appointment.id !== id));
     } catch (err) {
       console.log(err);
     }
@@ -56,16 +56,12 @@ const Patient = () => {
 
   const formik = useFormik({
     initialValues: {
-      id: '',
-      first_name: '',
-      last_name: '',
-      gender: '',
-      date_of_birth: '',
-      phone_number: '',
-      address: ''
+      patient_id: '',
+      doctor_id: '',
+      appointment_date: ''
     },
     onSubmit: (values, { resetForm }) => {
-      handleAddPatient(values, resetForm);
+      handleAddAppointment(values, resetForm);
     }
   });
 
@@ -95,14 +91,14 @@ const Patient = () => {
             fontWeight: 800
           }}
         >
-          Add A Patient
+          Add An Appointment
         </Typography>
         <Divider />
         <Stack>
           <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
             <Form>
               <Grid container rowGap={3}>
-                {PATIENT_INFO.map((item, index) => (
+                {APPOINTMENT_INFO.map((item, index) => (
                   <Grid
                     key={index}
                     item
@@ -150,7 +146,7 @@ const Patient = () => {
             fontWeight: 800
           }}
         >
-          Patient List
+          Appointment List
         </Typography>
         <Divider />
         <Grid container rowGap={1}>
@@ -167,7 +163,7 @@ const Patient = () => {
                 display={'flex'}
                 justifyContent={'center'}
               >
-                <PatientCard item={item} handleDelete={handlePatientDelete} />
+                <AppointmentCard item={item} handleDelete={handleAppointmentDelete} />
               </Grid>
             ))}
         </Grid>
@@ -176,4 +172,4 @@ const Patient = () => {
   );
 };
 
-export default Patient;
+export default Appointment;

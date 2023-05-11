@@ -19,13 +19,13 @@ const Header = ({ children }) => {
         <Navigate to={'/patient'} width={'auto'}>
           <ButtonRedacted>Patient</ButtonRedacted>
         </Navigate>
-        <Navigate to={'/listings'} width={'auto'}>
+        <Navigate to={'/doctor'} width={'auto'}>
           <ButtonRedacted>Doctor</ButtonRedacted>
         </Navigate>
-        <Navigate to={'/part-listings'} width={'auto'}>
+        <Navigate to={'/appointment'} width={'auto'}>
           <ButtonRedacted wide={true}>Appointment</ButtonRedacted>
         </Navigate>
-        <Navigate to={'/part-listings'} width={'auto'}>
+        <Navigate to={'/billing'} width={'auto'}>
           <ButtonRedacted>Billing</ButtonRedacted>
         </Navigate>
       </Stack>

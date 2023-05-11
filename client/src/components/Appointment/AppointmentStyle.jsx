@@ -5,7 +5,7 @@ import { DeleteRounded, EditRounded } from '@mui/icons-material';
 import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
 
-export const PatientCard = ({ item, handleDelete }) => {
+export const AppointmentCard = ({ item, handleDelete }) => {
   const navigate = useNavigate();
 
   return (
@@ -23,21 +23,17 @@ export const PatientCard = ({ item, handleDelete }) => {
       }}
     >
       <Stack justifyContent={'center'}>
-        <Stack direction={'row'} spacing={2}>
-          <Typography>{`Patient ID: ${item.id}`}</Typography>
-          <Typography>{`Name: ${item.first_name} ${item.last_name}`}</Typography>
-        </Stack>
-        <Stack direction={'row'} spacing={2}>
-          <Typography>{`Gender: ${item.gender}`}</Typography>
-          <Typography>{`DoB: ${moment(item.date_of_birth).format('DD-MM-YYYY')}`}</Typography>
-        </Stack>
-        <Typography>{`Phone: ${item.phone_number}`}</Typography>
-        <Typography>{`Address: ${item.address}`}</Typography>
+        <Typography>{`Appointment ID: ${item.appointment_id}`}</Typography>
+        <Typography>{`Patient Name: ${item.patient_name}`}</Typography>
+        <Typography>{`Patient Name: ${item.doctor_name}`}</Typography>
+        <Typography>{`Date & Time: ${moment(item.appointment_date).format(
+          'DD-MM-YYYY HH:MM A'
+        )}`}</Typography>
       </Stack>
       <Stack height={'100%'} justifyContent={'space-around'}>
         <IconButton size={'small'}>
           <EditRounded
-            onClick={() => navigate(`/patient/update/${item.id}`, { state: { item: item } })}
+            onClick={() => navigate(`/appointment/update/${item.appointment_id}`, { state: { item: item } })}
             sx={{
               color: COLORS.Blue
             }}

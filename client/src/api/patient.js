@@ -19,3 +19,9 @@ export const deletePatient = async (id) => {
     headers: noAuthHeader()
   });
 };
+
+export const updatePatient = async (id, data) => {
+  return await axios.put(`${base_url}/patient/update/${id}`, data, {
+    headers: noAuthHeader()
+  });
+};

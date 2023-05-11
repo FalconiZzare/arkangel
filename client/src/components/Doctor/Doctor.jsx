@@ -2,34 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import { Form, Formik, useFormik } from 'formik';
 import { COLORS } from '../../utils/GlobalColors';
-import { PATIENT_INFO } from '../../utils/fields';
+import { DOC_INFO } from '../../utils/fields';
 import StyledInputField from '../../ui/StyledInputField';
 import { SubmitButton } from '../../utils/ButtonRedacted';
-import { addPatient, deletePatient, getPatients } from '../../api/patient';
-import { PatientCard } from './PatientStyle';
+import { addDoctor, deleteDoctor, getDoctors } from '../../api/doctor';
+import { DoctorCard } from './DoctorStyle';
 
-const Patient = () => {
+const Doctor = () => {
   const [data, setData] = useState([]);
-  const handleAddPatient = async (values, resetForm) => {
-    const patientFormData = new FormData();
+  const handleAddDoctor = async (values, resetForm) => {
+    const doctorFormData = new FormData();
     for (const key in values) {
-      patientFormData.append(key, values[key]);
+      doctorFormData.append(key, values[key]);
     }
 
     try {
-      const res = await addPatient(patientFormData);
+      const res = await addDoctor(doctorFormData);
       if (res.data.success) {
         resetForm({ values: '' });
-        getPatientData();
+        getDoctorData();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getPatientData = () => {
+  const getDoctorData = () => {
     const fetchData = async () => {
-      const res = await getPatients();
+      const res = await getDoctors();
       if (res.data.success) {
         console.log(res.data.message);
         setData(res.data.data);
@@ -42,13 +42,13 @@ const Patient = () => {
   };
 
   useEffect(() => {
-    getPatientData();
+    getDoctorData();
   }, []);
 
-  const handlePatientDelete = async (id) => {
+  const handleDoctorDelete = async (id) => {
     try {
-      const res = await deletePatient(id);
-      if (res.data.success) setData(data.filter((patient) => patient.id !== id));
+      const res = await deleteDoctor(id);
+      if (res.data.success) setData(data.filter((doctor) => doctor.id !== id));
     } catch (err) {
       console.log(err);
     }
@@ -59,13 +59,10 @@ const Patient = () => {
       id: '',
       first_name: '',
       last_name: '',
-      gender: '',
-      date_of_birth: '',
-      phone_number: '',
-      address: ''
+      speciality: ''
     },
     onSubmit: (values, { resetForm }) => {
-      handleAddPatient(values, resetForm);
+      handleAddDoctor(values, resetForm);
     }
   });
 
@@ -95,14 +92,14 @@ const Patient = () => {
             fontWeight: 800
           }}
         >
-          Add A Patient
+          Add A Doctor
         </Typography>
         <Divider />
         <Stack>
           <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
             <Form>
               <Grid container rowGap={3}>
-                {PATIENT_INFO.map((item, index) => (
+                {DOC_INFO.map((item, index) => (
                   <Grid
                     key={index}
                     item
@@ -150,7 +147,7 @@ const Patient = () => {
             fontWeight: 800
           }}
         >
-          Patient List
+          Doctor List
         </Typography>
         <Divider />
         <Grid container rowGap={1}>
@@ -167,7 +164,7 @@ const Patient = () => {
                 display={'flex'}
                 justifyContent={'center'}
               >
-                <PatientCard item={item} handleDelete={handlePatientDelete} />
+                <DoctorCard item={item} handleDelete={handleDoctorDelete} />
               </Grid>
             ))}
         </Grid>
@@ -176,4 +173,4 @@ const Patient = () => {
   );
 };
 
-export default Patient;
+export default Doctor;

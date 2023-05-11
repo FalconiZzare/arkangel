@@ -6,6 +6,11 @@ import { UserContext } from '../App';
 import Home from '../components/Home/Home';
 import Login from '../pages/Login/Login';
 import Patient from '../components/Patient/Patient';
+import EditPatient from '../components/Patient/EditPatient';
+import Doctor from '../components/Doctor/Doctor';
+import EditDoctor from '../components/Doctor/EditDoctor';
+import Appointment from '../components/Appointment/Appointment';
+import EditAppointment from '../components/Appointment/EditAppointment';
 
 const EchelonRoutes = () => {
   const { user } = useContext(UserContext);
@@ -23,6 +28,11 @@ const EchelonRoutes = () => {
         <Route path={'/home'} element={<Home />} />
         <Route path={'/login'} element={<Login />} />
         <Route path={'/patient'} element={<Patient />} />
+        <Route path={'/patient/update/:id'} element={<EditPatient />} />
+        <Route path={'/doctor'} element={<Doctor />} />
+        <Route path={'/doctor/update/:id'} element={<EditDoctor />} />
+        <Route path={'/appointment'} element={<Appointment />} />
+        <Route path={'/appointment/update/:id'} element={<EditAppointment />} />
       </Routes>
     </>
   );

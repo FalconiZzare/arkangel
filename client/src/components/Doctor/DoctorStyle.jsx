@@ -2,10 +2,9 @@ import React from 'react';
 import { IconButton, Stack, Typography } from '@mui/material';
 import { COLORS, SHADOWS } from '../../utils/GlobalColors';
 import { DeleteRounded, EditRounded } from '@mui/icons-material';
-import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
 
-export const PatientCard = ({ item, handleDelete }) => {
+export const DoctorCard = ({ item, handleDelete }) => {
   const navigate = useNavigate();
 
   return (
@@ -23,21 +22,14 @@ export const PatientCard = ({ item, handleDelete }) => {
       }}
     >
       <Stack justifyContent={'center'}>
-        <Stack direction={'row'} spacing={2}>
-          <Typography>{`Patient ID: ${item.id}`}</Typography>
-          <Typography>{`Name: ${item.first_name} ${item.last_name}`}</Typography>
-        </Stack>
-        <Stack direction={'row'} spacing={2}>
-          <Typography>{`Gender: ${item.gender}`}</Typography>
-          <Typography>{`DoB: ${moment(item.date_of_birth).format('DD-MM-YYYY')}`}</Typography>
-        </Stack>
-        <Typography>{`Phone: ${item.phone_number}`}</Typography>
-        <Typography>{`Address: ${item.address}`}</Typography>
+        <Typography>{`Doctor ID: ${item.id}`}</Typography>
+        <Typography>{`Name: ${item.first_name} ${item.last_name}`}</Typography>
+        <Typography>{`Speciality: ${item.speciality}`}</Typography>
       </Stack>
       <Stack height={'100%'} justifyContent={'space-around'}>
         <IconButton size={'small'}>
           <EditRounded
-            onClick={() => navigate(`/patient/update/${item.id}`, { state: { item: item } })}
+            onClick={() => navigate(`/doctor/update/${item.id}`, { state: { item: item } })}
             sx={{
               color: COLORS.Blue
             }}

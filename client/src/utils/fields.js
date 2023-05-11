@@ -35,3 +35,44 @@ export const PATIENT_INFO = [
     type: 'text'
   }
 ];
+
+export const DOC_INFO = [
+  {
+    label: 'Doctor ID',
+    value: 'id',
+    type: 'text'
+  },
+  {
+    label: 'First Name',
+    value: 'first_name',
+    type: 'text'
+  },
+  {
+    label: 'Last Name',
+    value: 'last_name',
+    type: 'text'
+  },
+  {
+    label: 'Speciality',
+    value: 'speciality',
+    type: 'text'
+  }
+];
+
+export const APPOINTMENT_INFO = [
+  {
+    label: 'Patient ID',
+    value: 'patient_id',
+    type: 'text'
+  },
+  {
+    label: 'Doctor ID',
+    value: 'doctor_id',
+    type: 'text'
+  },
+  {
+    label: 'Appointment Date & Time',
+    value: 'appointment_date',
+    type: 'text'
+  }
+];
