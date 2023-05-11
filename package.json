@@ -27,8 +27,8 @@
     "mysql2": "^3.3.0"
   },
   "engines": {
-    "node": "18.14.0",
-    "npm": "9.3.1"
+    "node": "19.8.1",
+    "npm": "9.6.6"
   },
   "devDependencies": {
     "concurrently": "^7.6.0",
