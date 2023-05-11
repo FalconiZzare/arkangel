@@ -1,0 +1,79 @@
+.wave {
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+    align-items: center;
+    justify-content: center;
+}
+
+.wave .rect {
+    height: 100%;
+    width: 0.4em;
+    border-radius: 50px;
+    display: inline-block;
+    animation: wave-stretch-delay 1.2s infinite ease-in-out;
+}
+
+.wave .white-1 {
+    background-color: var(--White);
+    animation-delay: -1.2s;
+}
+
+.wave .white-2 {
+    background-color: var(--White);
+    animation-delay: -1.1s;
+}
+
+.wave .white-3 {
+    background-color: var(--White);
+    animation-delay: -1s;
+}
+
+.wave .white-4 {
+    background-color: var(--White);
+    animation-delay: -0.9s;
+}
+
+.wave .white-5 {
+    background-color: var(--White);
+    animation-delay: -0.8s;
+}
+
+.wave .orange-1 {
+    background-color: var(--DeepOrange);
+    animation-delay: -1.2s;
+}
+
+.wave .orange-2 {
+    background-color: var(--DeepOrange);
+    animation-delay: -1.1s;
+}
+
+.wave .orange-3 {
+    background-color: var(--DeepOrange);
+    animation-delay: -1s;
+}
+
+.wave .orange-4 {
+    background-color: var(--DeepOrange);
+    animation-delay: -0.9s;
+}
+
+.wave .orange-5 {
+    background-color: var(--DeepOrange);
+    animation-delay: -0.8s;
+}
+
+@keyframes wave-stretch-delay {
+
+    0%,
+    40%,
+    100% {
+        height: 50%;
+    }
+
+    20% {
+        height: 100%;
+    }
+}
