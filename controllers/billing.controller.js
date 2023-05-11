@@ -138,7 +138,9 @@ exports.getBillings = async (req, res) => {
 
   try {
     const billings = await db.executeQuery(`
-        SELECT p.first_name as patient_name,
+        SELECT b.patient_id,
+               b.id,
+               p.first_name as patient_name,
                a.id         as appointment_id,
                payment_date,
                amount

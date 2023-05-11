@@ -2,34 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
 import { Form, Formik, useFormik } from 'formik';
 import { COLORS } from '../../utils/GlobalColors';
-import { APPOINTMENT_INFO } from '../../utils/fields';
+import { BILL_INFO } from '../../utils/fields';
 import StyledInputField from '../../ui/StyledInputField';
 import { SubmitButton } from '../../utils/ButtonRedacted';
-import { addAppointment, deleteAppointment, getAppointments } from '../../api/appointment';
-import { AppointmentCard } from './AppointmentStyle';
+import { addBill, deleteBill, getBills } from '../../api/billing';
+import { BillCard } from './BillingStyle';
 
-const Appointment = () => {
+const Billing = () => {
   const [data, setData] = useState([]);
-  const handleAddAppointment = async (values, resetForm) => {
-    const appointmentFormData = new FormData();
+  const handleAddBill = async (values, resetForm) => {
+    const billFormData = new FormData();
     for (const key in values) {
-      appointmentFormData.append(key, values[key]);
+      billFormData.append(key, values[key]);
     }
 
     try {
-      const res = await addAppointment(appointmentFormData);
+      const res = await addBill(billFormData);
       if (res.data.success) {
         resetForm({ values: '' });
-        getAppointmentData();
+        getBillData();
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  const getAppointmentData = () => {
+  const getBillData = () => {
     const fetchData = async () => {
-      const res = await getAppointments();
+      const res = await getBills();
       if (res.data.success) {
         console.log(res.data.message);
         setData(res.data.data);
@@ -42,13 +42,13 @@ const Appointment = () => {
   };
 
   useEffect(() => {
-    getAppointmentData();
+    getBillData();
   }, []);
 
-  const handleAppointmentDelete = async (id) => {
+  const handleBillDelete = async (id) => {
     try {
-      const res = await deleteAppointment(id);
-      if (res.data.success) setData(data.filter((appointment) => appointment.appointment_id !== id));
+      const res = await deleteBill(id);
+      if (res.data.success) setData(data.filter((bill) => bill.id !== id));
     } catch (err) {
       console.log(err);
     }
@@ -57,11 +57,12 @@ const Appointment = () => {
   const formik = useFormik({
     initialValues: {
       patient_id: '',
-      doctor_id: '',
-      appointment_date: ''
+      appointment_id: '',
+      amount: '',
+      payment_date: ''
     },
     onSubmit: (values, { resetForm }) => {
-      handleAddAppointment(values, resetForm);
+      handleAddBill(values, resetForm);
     }
   });
 
@@ -91,14 +92,14 @@ const Appointment = () => {
             fontWeight: 800
           }}
         >
-          Add An Appointment
+          Add A Bill
         </Typography>
         <Divider />
         <Stack>
           <Formik initialValues={formik.initialValues} onSubmit={formik.handleSubmit}>
             <Form>
               <Grid container rowGap={3}>
-                {APPOINTMENT_INFO.map((item, index) => (
+                {BILL_INFO.map((item, index) => (
                   <Grid
                     key={index}
                     item
@@ -146,7 +147,7 @@ const Appointment = () => {
             fontWeight: 800
           }}
         >
-          Appointment List
+          Bill List
         </Typography>
         <Divider />
         <Grid container rowGap={1}>
@@ -163,7 +164,7 @@ const Appointment = () => {
                 display={'flex'}
                 justifyContent={'center'}
               >
-                <AppointmentCard item={item} handleDelete={handleAppointmentDelete} />
+                <BillCard item={item} handleDelete={handleBillDelete} />
               </Grid>
             ))}
         </Grid>
@@ -172,4 +173,4 @@ const Appointment = () => {
   );
 };
 
-export default Appointment;
+export default Billing;

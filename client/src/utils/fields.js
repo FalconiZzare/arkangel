@@ -76,3 +76,26 @@ export const APPOINTMENT_INFO = [
     type: 'text'
   }
 ];
+
+export const BILL_INFO = [
+  {
+    label: 'Patient ID',
+    value: 'patient_id',
+    type: 'text'
+  },
+  {
+    label: 'Appointment ID',
+    value: 'appointment_id',
+    type: 'text'
+  },
+  {
+    label: 'Bill Amount',
+    value: 'amount',
+    type: 'text'
+  },
+  {
+    label: 'Payment Date',
+    value: 'payment_date',
+    type: 'text'
+  }
+];

@@ -5,7 +5,7 @@ import { DeleteRounded, EditRounded } from '@mui/icons-material';
 import moment from 'moment/moment';
 import { useNavigate } from 'react-router-dom';
 
-export const AppointmentCard = ({ item, handleDelete }) => {
+export const BillCard = ({ item, handleDelete }) => {
   const navigate = useNavigate();
 
   return (
@@ -25,21 +25,21 @@ export const AppointmentCard = ({ item, handleDelete }) => {
       <Stack justifyContent={'center'}>
         <Typography>{`Appointment ID: ${item.appointment_id}`}</Typography>
         <Typography>{`Patient Name: ${item.patient_name}`}</Typography>
-        <Typography>{`Doctor Name: ${item.doctor_name}`}</Typography>
-        <Typography>{`Date & Time: ${moment(item.appointment_date).format(
-          'DD-MM-YYYY HH:MM A'
+        <Typography>{`Bill Amount: ${item.amount} BDT`}</Typography>
+        <Typography>{`Payment Date: ${moment(item.bill_date).format(
+          'DD-MM-YYYY'
         )}`}</Typography>
       </Stack>
       <Stack height={'100%'} justifyContent={'space-around'}>
         <IconButton size={'small'}>
           <EditRounded
-            onClick={() => navigate(`/appointment/update/${item.appointment_id}`, { state: { item: item } })}
+            onClick={() => navigate(`/billing/update/${item.id}`, { state: { item: item } })}
             sx={{
               color: COLORS.Blue
             }}
           />
         </IconButton>
-        <IconButton onClick={() => handleDelete(item.appointment_id)} size={'small'}>
+        <IconButton onClick={() => handleDelete(item.id)} size={'small'}>
           <DeleteRounded
             sx={{
               color: COLORS.Error
