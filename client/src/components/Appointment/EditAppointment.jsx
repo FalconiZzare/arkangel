@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Form, Formik, useFormik } from 'formik';
 import { COLORS } from '../../utils/GlobalColors';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
-import { APPOINTMENT_INFO } from "../../utils/fields";
+import { APPOINTMENT_INFO } from '../../utils/fields';
 import StyledInputField from '../../ui/StyledInputField';
 import { SubmitButton } from '../../utils/ButtonRedacted';
 import { updateAppointment } from '../../api/appointment';

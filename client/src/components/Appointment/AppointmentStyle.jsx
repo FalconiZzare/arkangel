@@ -33,7 +33,9 @@ export const AppointmentCard = ({ item, handleDelete }) => {
       <Stack height={'100%'} justifyContent={'space-around'}>
         <IconButton size={'small'}>
           <EditRounded
-            onClick={() => navigate(`/appointment/update/${item.appointment_id}`, { state: { item: item } })}
+            onClick={() =>
+              navigate(`/appointment/update/${item.appointment_id}`, { state: { item: item } })
+            }
             sx={{
               color: COLORS.Blue
             }}

@@ -48,7 +48,8 @@ const Appointment = () => {
   const handleAppointmentDelete = async (id) => {
     try {
       const res = await deleteAppointment(id);
-      if (res.data.success) setData(data.filter((appointment) => appointment.appointment_id !== id));
+      if (res.data.success)
+        setData(data.filter((appointment) => appointment.appointment_id !== id));
     } catch (err) {
       console.log(err);
     }

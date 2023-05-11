@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Form, Formik, useFormik } from 'formik';
 import { COLORS } from '../../utils/GlobalColors';
 import { Divider, Grid, Stack, Typography } from '@mui/material';
-import { BILL_INFO } from "../../utils/fields";
+import { BILL_INFO } from '../../utils/fields';
 import StyledInputField from '../../ui/StyledInputField';
 import { SubmitButton } from '../../utils/ButtonRedacted';
 import { updateBill } from '../../api/billing';

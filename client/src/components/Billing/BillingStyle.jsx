@@ -26,9 +26,7 @@ export const BillCard = ({ item, handleDelete }) => {
         <Typography>{`Appointment ID: ${item.appointment_id}`}</Typography>
         <Typography>{`Patient Name: ${item.patient_name}`}</Typography>
         <Typography>{`Bill Amount: ${item.amount} BDT`}</Typography>
-        <Typography>{`Payment Date: ${moment(item.bill_date).format(
-          'DD-MM-YYYY'
-        )}`}</Typography>
+        <Typography>{`Payment Date: ${moment(item.bill_date).format('DD-MM-YYYY')}`}</Typography>
       </Stack>
       <Stack height={'100%'} justifyContent={'space-around'}>
         <IconButton size={'small'}>
